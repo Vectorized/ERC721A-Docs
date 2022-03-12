@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ERC721A</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+
+<link rel="icon" href="assets/img/favicon.png">
+<meta property="og:title" content="ERC721A Documentation">
+<meta property="og:description" content="Mint multiple NFTs for close to the cost of one.">
+
+<meta property="og:image" content="assets/img/preview.png">
+<meta property="og:image:url"  content="assets/img/preview.png">
+<meta property="twitter:image" content="assets/img/preview.png">
+
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="ERC721A Documentation">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://unpkg.com/docsify-themeable/dist/css/theme-simple.css"/>
+<link rel="stylesheet" href="assets/fonts/stylesheet.css"/>
+
+<style type="text/css">
+:root {
+    --theme-hue: 355;
+    --theme-saturation: 57%;
+    --theme-lightness: 48%;
+    --theme-color: #c03541 !important;
+    --base-font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --sidebar-nav-pagelink-background-image--loaded: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11.2' height='7' viewBox='0 0 11.2 7'%3E%3Cpath d='M1.5 1.5l4.1 4 4.1-4' stroke-width='1.5' stroke='rgb%28192,53,64%29' fill='none' stroke-linecap='square' stroke-linejoin='miter' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+    --sidebar-nav-pagelink-background-image--active: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11.2' height='7' viewBox='0 0 11.2 7'%3E%3Cpath d='M1.5 1.5l4.1 4 4.1-4' stroke-width='1.5' stroke='rgb%28192,53,64%29' fill='none' stroke-linecap='square' stroke-linejoin='miter' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+    --sidebar-nav-pagelink-background-image--collapse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='11.2' viewBox='0 0 7 11.2'%3E%3Cpath d='M1.5 1.5l4 4.1 -4 4.1' stroke-width='1.5' stroke='rgb%28192,53,64%29' fill='none' stroke-linecap='square' stroke-linejoin='miter' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+}
+.sidebar .search input:focus  {
+    box-shadow: none !important;
+}
+.sidebar-nav > ul > li > ul > li > ul > li > a {
+    font-weight: 600 !important;
+}
+.sidebar-nav > ul > li > ul > li > ul > li > a::before {
+    display: none !important;
+}
+.sidebar > h1 .app-name-link {
+    font-family: "Styrene B";
+    font-size: 1.6em;
+    line-height: 1;
+    color: #000;
+}
+.sidebar > h1 .app-name-link b {
+    font-weight: bold;
+    color: #d8113d;
+}
+.sidebar {
+    background: #eeedeb;
+}
+.sidebar-toggle-button {
+    background: #e4e3e1;
+}
+.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5 {
+    color: #000;
+    font-family : "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+</style>
+
+<link rel="stylesheet" href="assets/css/prism-theme.css"/>
+</head>
+
+<body>
+<div id="app"></div>
+<script type="text/javascript">
+window.$docsify = {
+    name        : 'ERC721<b>A</b>',
+    repo        : 'https://github.com/chiru-labs/ERC721A',
+    coverpage   : false, 
+    homepage    : 'overview.md',
+    loadSidebar : 'sidebar.md',
+    auto2top    : true,
+    maxLevel    : 3,
+    subMaxLevel : 3,
+    search: {
+        depth      : 3,
+        noData     : 'No results!',
+        placeholder: 'Search...'
+    },
+    themeable: {
+        readyTransition : false,
+        responsiveTables: true
+    }
+}
+</script>
+<script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="https://unpkg.com/docsify-themeable"></script>
+<script src="https://unpkg.com/docsify@4/lib/plugins/search.js"></script>
+<script src="https://unpkg.com/prismjs@1/components/prism-solidity.min.js"></script>
+<script src="https://unpkg.com/darkreader"></script>
+<script type="text/javascript">
+if (window.fetch) {
+    DarkReader.setFetchMethod(window.fetch);
+    DarkReader.auto({
+        brightness: 100,
+        contrast: 90,
+        sepia: 10
+    });    
+}
+</script>
+</body>
+</html>
