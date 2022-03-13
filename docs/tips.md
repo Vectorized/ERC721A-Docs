@@ -37,3 +37,31 @@ To prevent overly expensive transfer fees for tokens that are minted in large ba
 - Break up excessively large batches into mini batches internally when minting. 
 
 - Look into [`ERC721AOwnersExplicit`](erc271a-owners-explicit.md). 
+
+## ERC721A vs ERC1155
+
+|                  | ERC721A        | ERC1155                |
+| ---------------- | -------------- | ---------------------- |
+| O(1) ownerOf     | Yes            | No ownerOf             |
+| O(1) balanceOf   | For all tokens | Within fungible tokens |
+| O(1)\* bulk mint | For all tokens | Within fungible tokens |
+| # mint `SSTORE`s | 2              | 1                      |
+
+\* Appriximately O(1) for ERC721A. See [Design](design.md).
+
+ERC1155 requires the use of centralized indexing services to emulate ERC721 functionality off-chain.
+
+## Other Implementations
+
+ERC721A is not a one-size-fits-all solution. 
+
+It is heavily optimized for generative artwork NFT collections.
+
+If your collection does not expect a busy mint phase (e.g. a pure utility NFT),  
+or does not require bulk minting,  
+these excellent implementations can be better for lowering overall transaction fees: 
+
+- [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) 
+- [Solmate](https://github.com/Rari-Capital/solmate)
+
+Use the right tool for the job.
