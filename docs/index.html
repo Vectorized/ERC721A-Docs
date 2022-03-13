@@ -197,20 +197,26 @@ var setupTheme = function () {
 		}
 		setElActive(getChoiceEl(name), 1);
 	};
-	var themeActivate = function (name) {
+	var themeActivate = function (name, forceRefresh) {
 		setOnlyChoiceActive(name);
-		if (currentTheme == name) return;
+		if (currentTheme == name && !forceRefresh) return;
 		if (name == 'light') DarkReader.disable();
 		if (name == 'auto') DarkReader.auto(drSettings);
 		if (name == 'dark') DarkReader.enable(drSettings);
 		setLsTheme(currentTheme = name);
 	};
-	var reloadTheme = function () { 
-		themeActivate(getLsTheme() || 'auto');
+	var reloadTheme = function (forceRefresh) { 
+		themeActivate(getLsTheme() || 'auto', forceRefresh);
+	};
+	var delayedReloadTheme = function () {
+		setTimeout(function () { reloadTheme(1) }, 1200);
 	};
 	var reloadChoices = function () {
 		var setClick = function (name) {
-			getChoiceEl(name).onclick = function () { themeActivate(name) };	
+			getChoiceEl(name).onclick = function () { 
+				themeActivate(name);
+				delayedReloadTheme();
+			};	
 		};
 		setClick('light');
 		setClick('auto');
@@ -224,6 +230,7 @@ var setupTheme = function () {
 				if (!document.querySelector('#theme .choice').onclick) 
 					reloadChoices();
 			}, 500);
+			delayedReloadTheme();
 			return true;
 		}
 	});
