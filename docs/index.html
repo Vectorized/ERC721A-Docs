@@ -175,7 +175,7 @@ var setupTheme = function () {
 		setClick('dark');
 		reloadTheme();
 	};
-	
+
 	var setupChoicesDelay = 30;
 	var setupChoices = function () {
 		if (getChoiceEls().length > 0) {
@@ -183,7 +183,7 @@ var setupTheme = function () {
 			setInterval(function () {
 			if (!document.querySelector('#theme .choice').onclick) 
 				reloadChoices();
-			}, 1000);
+			}, 500);
 		} else {
 			setupChoicesDelay *= 2;
 			setTimeout(setupChoices, setupChoicesDelay);
