@@ -38,6 +38,18 @@ To prevent overly expensive transfer fees for tokens that are minted in large ba
 
 - Look into [`ERC721AOwnersExplicit`](erc271a-owners-explicit.md). 
 
+## Efficient Tokenomics
+
+ERC721A keeps track of additional variables in the internal mappings.
+
+- [`startTimestamp`](erc721a.md#_ownershipOf) (starting time of holding) per token.
+- [`numberMinted`](erc721a.md#_numberMinted) per address. 
+- [`numberBurned`](erc721a.md#_numberBurned) per address.
+
+These variables hitchike on the `SLOAD`s and `SSTORE`s at near zero additional gas cost (< 1%).
+
+You can use them to design tokenomics with very minimal gas overhead. 
+
 ## ERC721A vs ERC1155
 
 |                  | ERC721A        | ERC1155                |

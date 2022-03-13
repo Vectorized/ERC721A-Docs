@@ -359,7 +359,7 @@ If there are multiple variables, please pack them into a `uint64`.
 function _ownershipOf(uint256 tokenId) internal view returns (TokenOwnership memory)
 ```
 
-Returns the token ownership data for `tokenId`.
+Returns the token ownership data for `tokenId`. See [`TokenOwnership`](#TokenOwnership).
 
 The gas spent here starts off proportional to the maximum mint batch size.
 
