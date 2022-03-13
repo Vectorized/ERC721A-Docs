@@ -28,7 +28,7 @@ This can help remove an extra cold `SLOAD` and `SSTORE` operation.
 
 For typical artwork collections, consider using `_mint` over `_safeMint` if you don't expect users to mint to contracts.
 
-## Batch size
+## Batch Size
 
 To prevent overly expensive transfer fees for tokens that are minted in large batches.
 
