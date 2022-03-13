@@ -19,7 +19,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="//unpkg.com/docsify-themeable/dist/css/theme-simple.css"/>
-<link rel="stylesheet" href="assets/fonts/stylesheet.css"/>
+<link rel="stylesheet" href="assets/logo/stylesheet.css"/>
+<link rel="stylesheet" href="assets/fontello/css/fontello.css"/>
 <style type="text/css">
 /* !important attributes are for consistency in dark theme */
 :root {
@@ -65,6 +66,31 @@ h1, h2, h3, h4, h5, h6 {
 	color: #000;
 	font-family : "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
+#theme {
+	text-align: justify;
+}
+#theme .choice {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	width: 33%;
+	cursor: pointer;
+	text-align: center;
+}
+#theme .choice:hover, #theme .choice.active {
+	color: var(--theme-color);
+}
+#theme .choice .icon {
+	font-size: 1.3em;
+	margin: -3px 0 -5px 0;
+}
+#theme .choice .text {
+	font-size: 0.6em;
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
 </style>
 <link rel="stylesheet" href="assets/css/prism-theme.css"/>
 </head>
@@ -99,13 +125,66 @@ window.$docsify = {
 // Solidity syntax highlighting via Prism. 
 Prism.languages.solidity=Prism.languages.extend("clike",{"class-name":{pattern:/(\b(?:contract|enum|interface|library|new|struct|using)\s+)(?!\d)[\w$]+/,lookbehind:!0},keyword:/\b(?:_|anonymous|as|assembly|assert|break|calldata|case|constant|constructor|continue|contract|default|delete|do|else|emit|enum|event|external|for|function|if|import|indexed|inherited|interface|internal|is|let|library|mapping|memory|modifier|new|payable|pragma|private|public|pure|require|returns?|revert|selfdestruct|solidity|storage|struct|suicide|switch|this|throw|using|var|view|while)\b/,operator:/=>|->|:=|=:|\*\*|\+\+|--|\|\||&&|<<=?|>>=?|[-+*/%^&|<>!=]=?|[~?]/}),Prism.languages.insertBefore("solidity","keyword",{builtin:/\b(?:address|bool|byte|u?int(?:8|16|24|32|40|48|56|64|72|80|88|96|104|112|120|128|136|144|152|160|168|176|184|192|200|208|216|224|232|240|248|256)?|string|bytes(?:[1-9]|[12]\d|3[0-2])?)\b/}),Prism.languages.insertBefore("solidity","number",{version:{pattern:/([<>]=?|\^)\d+\.\d+\.\d+\b/,lookbehind:!0,alias:"number"}}),Prism.languages.sol=Prism.languages.solidity;
 // Dark mode via darkreader.
-if (window.fetch) {
+var setupTheme = function () {
 	DarkReader.setFetchMethod(window.fetch);
-	DarkReader.auto({
-		brightness: 100,
-		contrast: 90,
-		sepia: 10
-	});
+	var lsThemeKey = 'erc721a_theme';
+	var getLsTheme = function () { return window.localStorage.getItem(lsThemeKey) };
+	var setLsTheme = function (name) { window.localStorage.setItem(lsThemeKey, name) };
+	var drSettings = { brightness: 100, contrast: 100, sepia: 0 };
+	var getChoiceEl = function (name) {
+		return document.querySelector('#theme .choice[name=' + name + ']');
+	};
+	var currentTheme = 0;
+	var getChoiceEls = function () {
+		return document.querySelectorAll('#theme .choice');
+	};
+	var setElActive = function (el, active) {
+		if (!el) return;
+		if (active) {
+			el.className += ' active';	
+		} else {
+			el.className = el.className.replace(/\s*active\s*/, '');
+		}
+	};
+	var setOnlyChoiceActive = function (name) {
+		var a = getChoiceEls();
+		for (var i = 0; i < a.length; ++i) {
+			setElActive(a[i], 0);
+		}
+		setElActive(getChoiceEl(name), 1);
+	};
+	var themeActivate = function (name) {
+		setOnlyChoiceActive(name);
+		if (currentTheme == name) return;
+		if (name == 'light') DarkReader.disable();
+		if (name == 'auto') DarkReader.auto(drSettings);
+		if (name == 'dark') DarkReader.enable(drSettings);
+		setLsTheme(currentTheme = name);
+	};
+	var reloadTheme = function () { 
+		themeActivate(getLsTheme() || 'auto');
+	};
+	reloadTheme();
+
+	var setupChoicesDelay = 30;
+	var setupChoices = function () {
+		if (getChoiceEls().length > 0) {
+			var setClick = function (name) {
+				getChoiceEl(name).onclick = function () { themeActivate(name) };	
+			};
+			setClick('light');
+			setClick('auto');
+			setClick('dark');
+			reloadTheme();
+		} else {
+			setupChoicesDelay *= 2;
+			setTimeout(setupChoices, setupChoicesDelay);
+		}	
+	}
+	setupChoices();
+};
+if (window.fetch) {
+	setupTheme();
 }
 </script>
 </body>
