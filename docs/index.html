@@ -40,6 +40,14 @@
 .sidebar .search input:focus  {
 	box-shadow: none !important;
 }
+.sidebar .search .input-wrap:hover {
+	transition: 0.2s border-color;
+	border-color: rgba(192,53,64,0.7);
+}
+.sidebar .search .input-wrap.focus {
+	border-color: rgba(192,53,64,0.7);
+	box-shadow: 0 0 3px 1px rgba(192,53,64,0.3);
+}
 .sidebar-nav > ul > li > ul > li > ul > li > a {
 	font-weight: 600 !important;
 }
@@ -79,6 +87,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
 #theme .choice:hover, #theme .choice.active {
+	transition: 0.2s color;
 	color: var(--theme-color);
 }
 #theme .choice .icon {
@@ -143,7 +152,7 @@ var setupTheme = function () {
 		if (active) {
 			el.className += ' active';	
 		} else {
-			el.className = el.className.replace(/\s*active\s*/, '');
+			el.className = el.className.replace(/\s+active\s*/, '');
 		}
 	};
 	var setOnlyChoiceActive = function (name) {
@@ -192,6 +201,23 @@ var setupTheme = function () {
 if (window.fetch) {
 	setupTheme();
 }
+var setupSearchInputDelay = 30, setupSearchInput = function () { 
+	var searchInput = document.querySelector('.sidebar .search input');
+	if (searchInput) {
+		var searchInputWrap = document.querySelector('.sidebar .search .input-wrap');
+		searchInput.addEventListener('focus', function () {
+			searchInputWrap.className += ' focus';
+		});
+		searchInput.addEventListener('blur', function () {
+			searchInputWrap.className = searchInputWrap.className.replace(/\s+focus\s*/, '');
+		});	
+	} else {
+		setupSearchInputDelay *= 2;
+		setTimeout(setupSearchInput, setupSearchInputDelay);
+	}
+};
+setupSearchInput();
+
 </script>
 </body>
 </html>
