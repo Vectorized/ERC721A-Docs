@@ -61,7 +61,7 @@ You can use them to design tokenomics with very minimal gas overhead.
 
 \* Appriximately O(1) for ERC721A. See [Design](design.md).
 
-ERC1155 requires the use of centralized indexing services to emulate ERC721 functionality off-chain.
+ERC1155 requires centralized indexing services to emulate ERC721-like functionality off-chain.
 
 ## Other Implementations
 
