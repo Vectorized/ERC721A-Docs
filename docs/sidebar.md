@@ -16,5 +16,8 @@
 </div><div class="choice" name="dark">
 	<div class="icon"><i class="icon-moon"></i></div>
 	<div class="text">dark</div>
-</div>
-</div>
+</div></div>
+- **Links**
+  - [<div class="s0cial"><i class="icon-github-circled"></i>Github</div>](https://github.com/chiru-labs/ERC721A)
+  - [<div class="s0cial"><i class="icon-twitter"></i>Twitter</div>](https://twitter.com/azukizen)
+<div class="copyright">© Chiru Labs 2022</div>
