@@ -166,22 +166,31 @@ var setupTheme = function () {
 	};
 	reloadTheme();
 
+	var reloadChoices = function () {
+		var setClick = function (name) {
+			getChoiceEl(name).onclick = function () { themeActivate(name) };	
+		};
+		setClick('light');
+		setClick('auto');
+		setClick('dark');
+		reloadTheme();
+	};
+	
 	var setupChoicesDelay = 30;
 	var setupChoices = function () {
 		if (getChoiceEls().length > 0) {
-			var setClick = function (name) {
-				getChoiceEl(name).onclick = function () { themeActivate(name) };	
-			};
-			setClick('light');
-			setClick('auto');
-			setClick('dark');
-			reloadTheme();
+			reloadChoices();
+			setInterval(function () {
+			if (!document.querySelector('#theme .choice').onclick) 
+				reloadChoices();
+			}, 1000);
 		} else {
 			setupChoicesDelay *= 2;
 			setTimeout(setupChoices, setupChoicesDelay);
 		}	
 	}
 	setupChoices();
+
 };
 if (window.fetch) {
 	setupTheme();
